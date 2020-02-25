@@ -18,10 +18,6 @@ class ListTodoComponent extends Component {
         this.refreshTodoList = this.refreshTodoList.bind(this);
     }
 
-    /* componentWillUnmount() {
-        console.log('componentWillUnmount');
-    } */
-
     componentDidMount() {
         this.refreshTodoList();
     }
@@ -51,7 +47,7 @@ class ListTodoComponent extends Component {
     }
 
     updateTodoClicked(id) {
-        console.log("Updating todo " + id);
+        this.props.history.push(`/todo/${id}`);
     }
 
     render() {

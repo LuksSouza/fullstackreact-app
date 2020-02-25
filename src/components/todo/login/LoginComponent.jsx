@@ -32,7 +32,6 @@ class LoginComponent extends Component {
     }
 
     handleChange(event) {
-        console.log(this.state);
         this.setState({[event.target.name]: event.target.value});
     }
 
