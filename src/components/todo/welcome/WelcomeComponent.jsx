@@ -19,9 +19,6 @@ class WelcomeComponent extends Component {
                     <div className="container">Welcome to Todo App {this.props.match.params.name}.
                     You can manage the todo list <Link to="/todos">here</Link></div>
                 </div>
-                <div className="container">
-                    Get a costumized welcome message clicking <button onClick={this.getHelloWorld} className="btn btn-success">here</button>
-                </div>
             </div>
         );
     }

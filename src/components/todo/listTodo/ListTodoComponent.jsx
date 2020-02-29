@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import TodoDataService from '../../../api/TodoDataService.js';
 import AuthenticationService from '../service/authentication/AuthenticationService.js';
+import moment from 'moment';
 
 class ListTodoComponent extends Component {
 
@@ -13,6 +14,7 @@ class ListTodoComponent extends Component {
             message: null
         };
 
+        this.addTodoClicked = this.addTodoClicked.bind(this);
         this.updateTodoClicked = this.updateTodoClicked.bind(this);
         this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
         this.refreshTodoList = this.refreshTodoList.bind(this);
@@ -50,6 +52,10 @@ class ListTodoComponent extends Component {
         this.props.history.push(`/todo/${id}`);
     }
 
+    addTodoClicked() {
+        this.props.history.push('/todo/-1');
+    }
+
     render() {
         return (
             <div>
@@ -72,13 +78,16 @@ class ListTodoComponent extends Component {
                                 <tr key={todo.id}>
                                     <th>{todo.description}</th>
                                     <th>{todo.done.toString()}</th>
-                                    <th>{todo.targetDate.toString()}</th>
+                                    <th>{moment(todo.targetDate).format('YYYY-MM-DD')}</th>
                                     <th><button className="btn btn-success" onClick={() => this.updateTodoClicked(todo.id)}>Update</button></th>
                                     <th><button className="btn btn-warning" onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></th>
                                 </tr>
                             )}
                         </tbody>
                     </table>
+                    <div className="row">
+                        <button className="btn btn-success" onClick={() => this.addTodoClicked()}>Add</button>
+                    </div>
                 </div>
             </div>
         );
