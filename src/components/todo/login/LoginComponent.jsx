@@ -17,6 +17,22 @@ class LoginComponent extends Component {
         this.loginClicked = this.loginClicked.bind(this);
     }
 
+    handleChange(event) {
+        this.setState({[event.target.name]: event.target.value});
+    }
+
+    loginClicked() {
+        AuthenticationService.getBasicAuth(this.state.username, this.state.password)
+        .then(() => {
+            AuthenticationService.registerSuccessfulLogin(this.state.username, this.state.password);
+            this.props.history.push(`/welcome/${this.state.username}`);
+        })
+        .catch(() => {
+            this.setState({hasLoginFailed: true});
+            this.setState({showSuccessMessage: false});
+        });
+    }
+
     render() {
         return (
             <div>
@@ -29,20 +45,6 @@ class LoginComponent extends Component {
                 </div>
             </div>
         );
-    }
-
-    handleChange(event) {
-        this.setState({[event.target.name]: event.target.value});
-    }
-
-    loginClicked() {
-        if (this.state.username === 'Lucas' && this.state.password === 'dummy') {
-            AuthenticationService.registerSuccessfulLogin(this.state.username);
-            this.props.history.push(`/welcome/${this.state.username}`);
-        } else {
-            this.setState({hasLoginFailed: true});
-            this.setState({showSuccessMessage: false});
-        }
     }
 
 }

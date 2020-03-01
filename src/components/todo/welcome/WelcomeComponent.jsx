@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
 
-import HelloWorldService from '../../../api/HelloWorldService.js';
-
 class WelcomeComponent extends Component {
 
     constructor(props) {
         super(props);
-
-        this.getHelloWorld = this.getHelloWorld.bind(this);
     }
 
     render() {
@@ -21,11 +17,6 @@ class WelcomeComponent extends Component {
                 </div>
             </div>
         );
-    }
-
-    getHelloWorld() {
-        HelloWorldService.executeHelloWorldService()
-        .then( responde => console.log(responde) );
     }
 
 }

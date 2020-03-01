@@ -28,11 +28,12 @@ class ListTodoComponent extends Component {
         let username = AuthenticationService.getUserLoggedIn();
 
         TodoDataService.getAllTodos(username)
-        .then(
-            response => { 
+        .then( response => { 
                 this.setState({todos : response.data}); 
-            }
-        );
+        })
+        .catch( error => {
+            this.setState({message : `An error has occured while trying to get todos: ${error.message}`})
+        });
     }
 
     deleteTodoClicked(id) {
